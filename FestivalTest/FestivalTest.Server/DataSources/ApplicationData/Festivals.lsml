@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Festival">
+    <EntityType.Attributes>
+      <CreatedModifiedPropertiesEnabled />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Naam"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Plaats"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Starttijd"
+        PropertyType=":DateTimeOffset">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Eindtijd"
+        PropertyType=":DateTimeOffset">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Image"
+        PropertyType="Microsoft.LightSwitch.Extensions:Image?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="TicketsCollection"
+        Association="Tickets_Festival"
+        FromEnd="Festival"
+        ToEnd="Tickets" />
+      <NavigationProperty
+        Name="Locaties"
+        Association="Locatie_Festival"
+        FromEnd="Festival"
+        ToEnd="Locatie" />
+      <NavigationProperty
+        Name="Beoordelings"
+        Association="Beoordeling_Festival"
+        FromEnd="Festival"
+        ToEnd="Beoordeling" />
+      <NavigationProperty
+        Name="Genre"
+        Association="Genre_Festival"
+        FromEnd="Festival"
+        ToEnd="Genre" />
+      <NavigationProperty
+        Name="Organisaties"
+        Association="Organisatie_Festival"
+        FromEnd="Festival"
+        ToEnd="Organisatie" />
+      <EntityProperty
+        Name="GemiddeldeBeoordeling"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CreatedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Created"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ModifiedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Modified"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <Hidden />
+          <UseForConcurrency />
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="ApplicationData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Festivals"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Festival" />
+    <QueryOperation
+      Name="Festivals_Single"
+      ReturnType="Festival">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Festivals" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Festivals_SingleOrDefault"
+      ReturnType="Festival">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Festivals" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Name="Tickets_Festivals"
+      Association="Tickets_Festival">
+      <AssociationSetEnd
+        Name="Tickets"
+        EntitySet="TicketsSet" />
+      <AssociationSetEnd
+        Name="Festival"
+        EntitySet="Festivals" />
+    </AssociationSet>
+    <AssociationSet
+      Name="Locatie_Festivals"
+      Association="Locatie_Festival">
+      <AssociationSetEnd
+        Name="Locatie"
+        EntitySet="Locaties" />
+      <AssociationSetEnd
+        Name="Festival"
+        EntitySet="Festivals" />
+    </AssociationSet>
+    <AssociationSet
+      Name="Beoordeling_Festivals"
+      Association="Beoordeling_Festival">
+      <AssociationSetEnd
+        Name="Beoordeling"
+        EntitySet="Beoordelings" />
+      <AssociationSetEnd
+        Name="Festival"
+        EntitySet="Festivals" />
+    </AssociationSet>
+    <AssociationSet
+      Name="Organisatie_Festivals"
+      Association="Organisatie_Festival">
+      <AssociationSetEnd
+        Name="Organisatie"
+        EntitySet="Organisaties" />
+      <AssociationSetEnd
+        Name="Festival"
+        EntitySet="Festivals" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association
+    Name="Tickets_Festival">
+    <AssociationEnd
+      Name="Tickets"
+      Multiplicity="Many"
+      EntityType="Tickets" />
+    <AssociationEnd
+      Name="Festival"
+      Multiplicity="One"
+      EntityType="Festival">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <DataService
+    Name="ApplicationDataMapping">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <AssociationSetMapping
+      AssociationSet="Tickets_Festivals">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Tickets_Festivals" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Tickets_Festivals]/Members[Tickets]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Tickets_Festival" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Tickets_Festivals]/Members[Festival]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="Locatie_Festivals">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Locatie_Festivals" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Locatie_Festivals]/Members[Locatie]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Locatie_Festival" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Locatie_Festivals]/Members[Festival]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="Beoordeling_Festivals">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Beoordeling_Festivals" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Beoordeling_Festivals]/Members[Beoordeling]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Beoordeling_Festival" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Beoordeling_Festivals]/Members[Festival]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <EntitySetMapping
+      EntitySet="Festivals">
+      <EntitySetMapping.Attributes>
+        <SsdlForeignKeyProperty
+          Name="Genre_Festival"
+          Nullable="False"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="Organisatie_Festivals">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Organisatie_Festivals" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Organisatie_Festivals]/Members[Organisatie]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Organisatie_Festival" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Organisatie_Festivals]/Members[Festival]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+  <Association
+    Name="Locatie_Festival">
+    <AssociationEnd
+      Name="Locatie"
+      Multiplicity="Many"
+      EntityType="Locatie" />
+    <AssociationEnd
+      Name="Festival"
+      EntityType="Festival">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Disassociate" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Beoordeling_Festival">
+    <AssociationEnd
+      Name="Beoordeling"
+      Multiplicity="Many"
+      EntityType="Beoordeling" />
+    <AssociationEnd
+      Name="Festival"
+      Multiplicity="One"
+      EntityType="Festival">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Organisatie_Festival">
+    <AssociationEnd
+      Name="Organisatie"
+      Multiplicity="Many"
+      EntityType="Organisatie" />
+    <AssociationEnd
+      Name="Festival"
+      EntityType="Festival">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Disassociate" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+</ServiceApplication>
